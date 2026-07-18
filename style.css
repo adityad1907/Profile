@@ -1,7 +1,172 @@
-block{
-    width: 100px;
-    height: 100px;
-    color: red;
-    align-items: center;
-    display: flex;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(46, 98, 253);
+  z-index: -1;
+}
+
+/* ===== HEADER: personal details + photo ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 30px 40px;
+}
+
+.details {
+  flex: 1;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 24px 32px;
+  background: rgb(31, 125, 207);
+  border-radius: 12px;
+  color: white;
+}
+
+.details .name {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.details .title {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.85;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.details .bio {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  max-width: 60ch;
+}
+
+.photo {
+  flex-shrink: 0;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(31, 125, 207);
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  align-self: flex-start;
+}
+
+/* ===== ROWS ===== */
+.row {
+  margin: 30px 0;
+}
+
+.row-label {
+  text-align: center;
+  color: white;
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+}
+
+/* Wrapper clips the row and creates the fade-edge effect */
+.flex-wrapper {
+  overflow: hidden;
+  width: 100%;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+.flex {
+  display: flex;
+  gap: 2vw;
+  align-items: center;
+  width: max-content;
+}
+
+/* Scroll left */
+.flex--left {
+  animation: spin 20s infinite linear;
+}
+
+/* Scroll right (same animation, played backwards) */
+.flex--right {
+  animation: spin 20s infinite linear reverse;
+}
+
+/* Pause the scroll when hovering anywhere over that row */
+.flex:hover {
+  animation-play-state: paused;
+}
+
+/* ===== CARDS ===== */
+.card {
+  position: relative;
+  width: 16vw;
+  height: 22vh;
+  flex-shrink: 0;
+  border-radius: 15%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.smfornt,
+.smback {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15%;
+  backface-visibility: hidden;
+  background: rgb(31, 125, 207);
+  color: #252424;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smback {
+  transform: rotateY(180deg);
+}
+
+@keyframes spin {
+  from { translate: 0; }
+  to   { translate: -50%; }
 }
